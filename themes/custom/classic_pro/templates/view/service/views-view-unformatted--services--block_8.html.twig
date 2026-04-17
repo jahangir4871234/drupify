@@ -1,0 +1,16 @@
+<div class="items">
+      {% for row in rows %}
+        {% if loop.index is odd %}
+            <div class = "row first">
+              {{ row.content }}
+            </div>
+        {% else %}
+            <div class = "row second">
+              {{ row.content }}
+            </div>
+        {% endif %}
+      {% endfor %}
+</div>
+
+
+  

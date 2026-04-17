@@ -1,0 +1,22 @@
+<!-- Goals -->
+{% if delta is even %}
+    <li class="left aos-init aos-animate" data-aos="fade-up" data-aos-duration="800">
+        <div class="year">
+            <span>{{ content.field_period.0 }}</span>
+        </div>
+        <div class="content">
+            <h4>{{ content.field_title.0 }}</h4>
+            <p>{{ content.field_description.0 }}
+        </div>
+    </li>
+{% else %}
+    <li class="right aos-init aos-animate" data-aos="fade-up" data-aos-duration="800">
+        <div class="content">
+            <h4>{{ content.field_title.0 }}</h4>
+            <p>{{ content.field_description.0 }}</p>
+        </div>
+        <div class="year">
+            <span>{{ content.field_period.0 }}</span>
+        </div>
+    </li>
+{% endif %}

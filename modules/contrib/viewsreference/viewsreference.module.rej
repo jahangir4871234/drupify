@@ -1,0 +1,18 @@
+--- viewsreference.module
++++ viewsreference.module
+@@ -55,12 +55,12 @@ function viewsreference_module_implements_alter(&$implementations, $hook) {
+  * Implements hook_views_pre_view().
+  */
+ function viewsreference_views_pre_view(ViewExecutable $view, $display_id, array &$args) {
+-  if (!isset($view->element['#viewsreference']) && empty($view->getRequest()->request->get('viewsreference'))) {
++  if (!isset($view->element['#viewsreference']) && empty($view->getRequest()->request->all('viewsreference'))) {
+     return;
+   }
+ 
+-  if (!empty($view->getRequest()->request->get('viewsreference'))) {
+-    $view->element['#viewsreference'] = $view->getRequest()->request->get('viewsreference');
++  if (!empty($view->getRequest()->request->all('viewsreference'))) {
++    $view->element['#viewsreference'] = $view->getRequest()->request->all('viewsreference');
+     // For ajax views we reset all handlers and make the view initialize again
+     // to allow changes from the settings plugins.
+     $view->display_handler->handlers = [];

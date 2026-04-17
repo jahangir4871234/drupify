@@ -1,0 +1,22 @@
+--- src/Plugin/Field/FieldType/ViewsReferenceItem.php
++++ src/Plugin/Field/FieldType/ViewsReferenceItem.php
+@@ -94,7 +94,7 @@ class ViewsReferenceItem extends EntityReferenceItem {
+     }
+ 
+     // Empty string argument only possible if no argument supplied.
+-    $data = unserialize($values['data'], ['allowed_classes' => FALSE]);
++    $data = isset($values['data']) ? unserialize($values['data'], ['allowed_classes' => FALSE]) : [];
+     if (isset($data['argument']) && $data['argument'] === '') {
+       $data['argument'] = NULL;
+       $values['data'] = serialize($data);
+--- src/Plugin/Field/FieldType/ViewsReferenceItem.php
++++ src/Plugin/Field/FieldType/ViewsReferenceItem.php
+@@ -94,7 +94,7 @@ class ViewsReferenceItem extends EntityReferenceItem {
+     }
+ 
+     // Empty string argument only possible if no argument supplied.
+-    $data = isset($values['data']) ? unserialize($values['data'], ['allowed_classes' => FALSE]) : [];
++    $data = !empty($values['data']) ? unserialize($values['data'], ['allowed_classes' => FALSE]) : [];
+     if (isset($data['argument']) && $data['argument'] === '') {
+       $data['argument'] = NULL;
+       $values['data'] = serialize($data);

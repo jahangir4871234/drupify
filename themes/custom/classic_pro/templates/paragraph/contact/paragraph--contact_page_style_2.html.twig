@@ -1,0 +1,46 @@
+<!-- Contact Page --> 
+<section class="contact-style-2-details">
+        <div class="container">
+            <div class="pages-title aos-init aos-animate" data-aos="fade-out" data-aos-duration="800">
+                <h2>{{ content.field_section_title.0 }}</h2>
+            </div>
+            <ul class="contact-details aos-init aos-animate" data-aos="fade-up" data-aos-duration="800">
+                {% if content.field_address.0  %}
+                    <li>
+                        <h4>Address</h4>
+                        <a href="https://www.google.com/maps/" title="Address">{{ content.field_address.0 }}</a>
+                    </li>
+                {% endif %}
+                {% if content.field_contact_number.0  %}
+                    <li>
+                        <h4>Call</h4>
+                        <a href="tel:{{ content.field_contact_number.0 }}" title="{{ content.field_contact_number.0 }}">{{ content.field_contact_number.0 }}</a>
+                    </li>
+                {% endif %}
+                {% if content.field_mail_address.0  %}
+                    <li>
+                        <h4>Mail</h4>
+                        <a href="mailto:{{ content.field_mail_address.0 }}" title="{{ content.field_mail_address.0 }}">{{ content.field_mail_address.0 }}</a>
+                    </li>
+                {% endif %}
+                    <li>
+                        {{ content.field_social_media_link }}
+                    </li>
+            </ul>
+        </div>
+    </section>
+    <section class="contact-style-2-map">
+        <div class="container">
+            {{ content.field_map_link.0 }}
+        </div>
+    </section>
+    <div class="contact-style-2-form form-style-3 section aos-init aos-animate" data-aos="fade-up" data-aos-duration="800">
+        <div class="container">
+            <div class="item">
+                <div class="pages-title">
+                    <h2>{{ content.field_form_title.0 }}</h2>
+                </div>
+                {{ content.field_contact_form_style_1 }}
+            </div>
+        </div>
+    </div>

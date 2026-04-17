@@ -1,0 +1,63 @@
+
+.services,
+.services * {
+  transition: none !important;
+  -webkit-transition: none !important;
+  animation: none !important;
+  -webkit-animation: none !important;
+}
+
+.services .icon-container {
+  width: 72px !important;
+  height: 72px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+}
+
+.services .icon-container img {
+  width: 48px !important;
+  height: 48px !important;
+  display: block !important;
+}
+
+.services .service-card {
+  max-height: 260px !important;
+}
+
+
+.services [style*="transition"], .services [style*="animation"] {
+  transition: none !important;
+  animation: none !important;
+}
+
+.transitions-suppressed,
+.transitions-suppressed * {
+  transition: none !important;
+  -webkit-transition: none !important;
+  animation: none !important;
+  -webkit-animation: none !important;
+}
+
+
+.services .service-card:hover {
+  background-color: inherit !important;
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+
+.services .overlay {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+.services *:not(a):hover {
+  transition: none !important;
+  animation: none !important;
+  background-color: inherit !important;
+  opacity: 1 !important;
+  transform: none !important;
+}

@@ -1,0 +1,27 @@
+<!-- Single Portfolio -->
+{% if  fields.counter.content == '2' or fields.counter.content == '6' %}
+    <div class="col-lg-4 col-sm-6 col-12 item digital-marketing mobile">
+        <a href="{{ fields.field_image_1.content }}">
+            <div class="item-content h-large">
+                {{ fields.field_image.content }}
+                <div class="our-works-overlay-3">
+                    <h3>{{ fields.title.content }}</h3>
+                </div>
+            </div>
+        </a>
+    </div>
+{% else %}
+    <div class="col-lg-4 col-sm-6 col-12 item digital-marketing mobile">
+        <a href="{{ fields.field_image_1.content }}">
+            <div class="item-content">
+                {{ fields.field_image.content }}
+                <div class="our-works-overlay-3">
+                    <h3>{{ fields.title.content }}</h3>
+                </div>
+            </div>
+        </a>
+    </div>
+{% endif %}                
+                                
+                            
+

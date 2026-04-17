@@ -1,0 +1,19 @@
+<!-- Awards --> 
+<section class="awards section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-12 aos-init aos-animate" data-aos="fade-up" data-aos-duration="800">
+                    <div class="image">
+                        <img src="{{ file_url(content.field_image['#items'].entity.uri.value) }}" alt="{{content.field_image['#items'].alt}}">
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-12">
+                    <div class="lists">
+                        <div class="row">
+                              {{ content.field_award }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>

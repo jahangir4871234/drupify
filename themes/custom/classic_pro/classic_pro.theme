@@ -1,0 +1,449 @@
+<?php
+
+/**
+ * @file
+ * Functions to support theming in the SASS Starterkit subtheme.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Url;
+use Drupal\file\Entity\File;
+use Drupal\Core\Entity\EntityInterface;
+/**
+ * Implements hook_form_system_theme_settings_alter() for settings form.
+ *
+ * Replace Barrio setting options with subtheme ones.
+ *
+ * Example on how to alter theme settings form
+ */
+
+function classic_pro_preprocess_html(&$variables) {
+  
+  $variables['time'] = \Drupal::time()->getCurrentTime();
+  global $base_url;
+  $variables['base_url'] = $base_url;
+  $variables['show_pannel'] = theme_get_setting('show_pannel');
+  $variables['primary_color'] = theme_get_setting('primary_color');
+  $variables['secondary_color'] = theme_get_setting('secondary_color');
+  $variables['default_color'] = theme_get_setting('default_color');
+  $variables['sticky'] = theme_get_setting('sticky');
+  $variables['loader'] = theme_get_setting('loader');
+  $variables['styles'] = theme_get_setting('styles');
+  // header
+  $variables['header_variation'] = theme_get_setting('header_variation');
+  $variables['color_set'] = ['set_1' => [
+      'title' => t('color_set_1'),
+      'name' => t('Combo 1'),
+      'colors' => [
+        'primary_color' => '#1b1c21',
+        'secondary_color' => '#5e5e5e',
+      ],
+    ],
+    'set_2' => [
+      'title' => t('color_set_2'),
+      'name' => t('Combo 2'),
+      'colors' => [
+      'primary_color' => '#d2a679',
+      'secondary_color' => '#014b5f',
+      ],
+    ],
+    'set_3' => [
+      'title' => t('color_set_3'),
+      'name' => t('Combo 3'),
+      'colors' => [
+      'primary_color' => '#257378',
+      'secondary_color' => '#153156',
+      ],
+    ],
+    'set_4' => [
+      'title' => t('color_set_4'),
+      'name' => t('Combo 4'),
+      'colors' => [
+      'primary_color' => '#cd6767',
+      'secondary_color' => '#282828',
+      ],
+    ],
+    'set_5' => [
+      'title' => t('color_set_5'),
+      'name' => t('Combo 5'),
+      'colors' => [
+      'primary_color' => '#9f0678',
+      'secondary_color' => '#153156',
+      ],
+    ],
+    'set_6' => [
+      'title' => t('color_set_6'),
+      'name' => t('Combo 6'),
+      'colors' => [
+      'primary_color' => '#608735',
+      'secondary_color' => '#000000',
+      ],
+    ],
+    'set_7' => [
+      'title' => t('color_set_7'),
+      'name' => t('Combo 7'),
+      'colors' => [
+      'primary_color' => '#c98723',
+      'secondary_color' => '#041b45',
+      ],
+    ],
+    'set_8' => [
+      'title' => t('color_set_8'),
+      'name' => t('Combo 8'),
+      'colors' => [
+      'primary_color' => '#f44336',
+      'secondary_color' => '#000000',
+      ],
+    ],
+    'set_9' => [
+      'title' => t('color_set_9'),
+      'name' => t('Combo 9'),
+      'colors' => [
+      'primary_color' => '#99321e',
+      'secondary_color' => '#014b5f',
+      ],
+    ],
+    'set_10' => [
+      'title' => t('color_set_10'),
+      'name' => t('Combo 10'),
+      'colors' => [
+      'primary_color' => '#257378',
+      'secondary_color' => '#000000',
+      ],
+    ],
+  ];
+
+}
+
+function classic_pro_preprocess_page(&$variables) {
+  $variables['header_variation'] = theme_get_setting('header_variation');
+  $variables['sticky'] = theme_get_setting('sticky');
+  $variables['loader'] = theme_get_setting('loader');
+  $variables['styles'] = theme_get_setting('styles');
+  $variables['primary_color'] = theme_get_setting('primary_color');
+  $variables['secondary_color'] = theme_get_setting('secondary_color');
+  $variables['default_color'] = theme_get_setting('default_color');
+  
+  // CopyRight
+    $variables['copyright_detail'] = theme_get_setting('copyright_detail')['value'];
+  //Footer Bg Image
+  $path = "";
+  if (!empty(theme_get_setting('footer_bg_image'))) {
+    $fid = theme_get_setting('footer_bg_image')[0];
+    if (!empty($fid)) {
+    $file =File::load($fid);
+    $path = Drupal::service('file_url_generator')->generateAbsoluteString($file->getFileUri());
+    }
+  }
+  $variables['footer_bg_image'] = $path;
+  //Page Banner 
+  $path = "";
+  if (!empty(theme_get_setting('banner_image'))) {
+    $fid = theme_get_setting('banner_image')[0];
+    if (!empty($fid)) {
+    $file =File::load($fid);
+    $path = Drupal::service('file_url_generator')->generateAbsoluteString($file->getFileUri());
+    }
+  }
+  $variables['banner_image'] = $path;
+  //Hamburber Icon
+  $path = "";
+  if (!empty(theme_get_setting('hamburger_icon'))) {
+    $fid = theme_get_setting('hamburger_icon')[0];
+    if (!empty($fid)) {
+    $file =File::load($fid);
+    $path = Drupal::service('file_url_generator')->generateAbsoluteString($file->getFileUri());
+    }
+  }
+  $variables['hamburger_icon'] = $path;
+  $variables['about_title'] = theme_get_setting('about_title');
+  $variables['about_site'] = theme_get_setting('about_site');
+  $variables['contact_title'] = theme_get_setting('contact_title');
+  $variables['contact_detail'] = theme_get_setting('contact_detail')['value'];
+  //Search Title
+  $variables['search_banner_title'] = theme_get_setting('search_banner_title');
+
+}
+//<=========LOGIN PAGE===============>//
+function classic_pro_preprocess_user_login(&$variables) {
+  $variables['login_banner_title'] = theme_get_setting('login_banner_title');
+  $variables['login_title'] = theme_get_setting('login_title');
+  $variables['login_name_description'] = theme_get_setting('login_name_description');
+  $variables['login_password_description'] = theme_get_setting('login_password_description');
+  //Page Banner 
+  $path = "";
+  if (!empty(theme_get_setting('banner_image'))) {
+    $fid = theme_get_setting('banner_image')[0];
+    if (!empty($fid)) {
+    $file =File::load($fid);
+    $path = Drupal::service('file_url_generator')->generateAbsoluteString($file->getFileUri());
+    }
+  }
+  $variables['banner_image'] = $path;
+  //Company Logo
+  $path = "";
+  if (!empty(theme_get_setting('company_logo'))) {
+    $fid = theme_get_setting('company_logo')[0];
+    if (!empty($fid)) {
+    $file =File::load($fid);
+    $path = Drupal::service('file_url_generator')->generateAbsoluteString($file->getFileUri());
+    }
+  }
+  $variables['company_logo'] = $path;
+}
+//<=========REGISTER PAGE===============>/
+function classic_pro_preprocess_user_register(&$variables) {
+  $variables['register_banner_title'] = theme_get_setting('register_banner_title');
+  $variables['register_title'] = theme_get_setting('register_title');
+  $variables['register_name_description'] = theme_get_setting('register_name_description');
+  $variables['register_mail_description'] = theme_get_setting('register_mail_description');
+  //Page Banner 
+  $path = "";
+  if (!empty(theme_get_setting('banner_image'))) {
+    $fid = theme_get_setting('banner_image')[0];
+    if (!empty($fid)) {
+    $file =File::load($fid);
+    $path = Drupal::service('file_url_generator')->generateAbsoluteString($file->getFileUri());
+    }
+  }
+  $variables['banner_image'] = $path;
+  //Company Logo
+  $path = "";
+  if (!empty(theme_get_setting('company_logo'))) {
+    $fid = theme_get_setting('company_logo')[0];
+    if (!empty($fid)) {
+    $file =File::load($fid);
+    $path = Drupal::service('file_url_generator')->generateAbsoluteString($file->getFileUri());
+    }
+  }
+  $variables['company_logo'] = $path;
+}
+
+//<=========RESET PASSWORD PAGE===============>//
+function classic_pro_preprocess_user_pass(&$variables) {
+  $variables['reset_banner_title'] = theme_get_setting('reset_banner_title');
+  $variables['reset_page_title'] = theme_get_setting('reset_page_title');
+  $variables['reset_pass_name_description'] = theme_get_setting('reset_pass_name_description');
+  //Page Banner 
+  $path = "";
+  if (!empty(theme_get_setting('banner_image'))) {
+    $fid = theme_get_setting('banner_image')[0];
+    if (!empty($fid)) {
+    $file =File::load($fid);
+    $path = Drupal::service('file_url_generator')->generateAbsoluteString($file->getFileUri());
+    }
+  }
+  $variables['banner_image'] = $path;
+  //Company Logo
+  $path = "";
+  if (!empty(theme_get_setting('company_logo'))) {
+    $fid = theme_get_setting('company_logo')[0];
+    if (!empty($fid)) {
+    $file =File::load($fid);
+    $path = Drupal::service('file_url_generator')->generateAbsoluteString($file->getFileUri());
+    }
+  }
+  $variables['company_logo'] = $path;
+}
+//<============Maintenance Page===========>
+function classic_pro_preprocess_maintenance_page(&$variables) {
+  $variables['mode_type'] = theme_get_setting('mode_type');
+  //Maintenance
+  $variables['maintenance_mode_title'] = theme_get_setting('maintenance_mode_title')['value'];
+  $variables['maintenance_mode_description'] = theme_get_setting('maintenance_mode_description'); 
+    //Background Image
+    $path = "";
+    if (!empty(theme_get_setting('bg_image_m'))) {
+      $fid = theme_get_setting('bg_image_m')[0];
+      if (!empty($fid)) {
+      $file =File::load($fid);
+      $path = Drupal::service('file_url_generator')->generateAbsoluteString($file->getFileUri());
+      }
+    }
+    $variables['bg_image_m'] = $path;
+  //Coming Soon
+  $variables['coming_soon_title'] = theme_get_setting('coming_soon_title')['value'];
+  $variables['coming_soon_description'] = theme_get_setting('coming_soon_description');
+    //Background Image
+    $path = "";
+    if (!empty(theme_get_setting('bg_image_c'))) {
+      $fid = theme_get_setting('bg_image_c')[0];
+      if (!empty($fid)) {
+      $file =File::load($fid);
+      $path = Drupal::service('file_url_generator')->generateAbsoluteString($file->getFileUri());
+      }
+    }
+    $variables['bg_image_c'] = $path;
+    $variables['launch_date'] = theme_get_setting('launch_date');
+  $variables['#attached'] = [
+      'drupalSettings' => [
+          'custom_date' => $variables['custom_date'] = theme_get_setting('launch_date'),
+      ],
+  ];
+}
+
+function classic_pro_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  if($form_id == 'user_login_form'){
+    $form['name']['#placeholder']= 'Username *';
+    $form['pass']['#placeholder'] = t('Password *');
+  }
+
+  if($form_id == 'user_register_form'){
+    $form['account']['mail']['#placeholder']= 'Email Id';
+    $form['account']['name']['#placeholder']= 'Username';
+    $form['actions']['submit']['#value'] = t('Register');  
+  }
+
+  if($form_id == 'user_pass'){
+    $form['name']['#attributes']['placeholder']= 'Username or Email Id';
+    $form['actions']['submit']['#value'] = t('Reset');  
+  }
+  
+}
+
+
+function classic_pro_preprocess_form(&$variables) {
+  global $base_url;
+  $variables['base_url'] = $base_url;
+}
+
+function classic_pro_preprocess_comment(&$variables) {
+  global $base_url;
+  $variables['base_url'] = $base_url;
+}
+
+
+function classic_pro_theme(&$existing, $type, $theme, $path) {
+  $hooks = array();
+  $hooks['user_login_form'] = array(
+   'render element' => 'form',
+   'template' => 'user-login-form',
+   'preprocess functions' => array(
+      'classic_pro_preprocess_user_login'
+   ),
+  );
+  $hooks['user_register_form'] = array(
+   'render element' => 'form',
+   'template' => 'user-register-form',
+   'preprocess functions' => array(
+      'classic_pro_preprocess_user_register'
+   ),
+  );
+  $hooks['user_pass'] = array(
+   'render element' => 'form',
+   'template' => 'user-pass-form',
+   'preprocess functions' => array(
+      'classic_pro_preprocess_user_pass'
+   ),
+  );
+  return $hooks;  
+}
+
+/**
+ * Searh Result Page.
+ **
+ */
+function classic_pro_preprocess_item_list__search_results(&$variables) {
+  global $base_url;
+  $variables['base_url'] = $base_url;
+  // Search Result count
+  $pager = \Drupal::service('pager.manager')->getPager();
+  if (!empty($pager)){
+    $count_results = $pager->getTotalItems();
+    $variables['total_items_count'] = $count_results;
+  }
+  else{
+    $variables['total_items_count'] = 0;
+  }
+  // Search Keyword
+  $current_path = \Drupal::request()->getpathInfo();
+  //echo $current_path;
+  if ($current_path == '/search/node') {
+    if (\Drupal::request()->query->has('keys')) {
+      $keywords = \Drupal::request()->query->get('keys');
+      $variables['keyword'] = $keywords;
+    }
+  }
+}
+
+function classic_pro_preprocess_node(&$variables){
+  if ($variables['node']->getType() == 'blog')
+    {
+      //Prev Next
+      $block = \Drupal\block\Entity\Block::load('views_block__blog_block_11');
+      $variables['prev_next'] = \Drupal::entityTypeManager()
+      ->getViewBuilder('block')
+      ->view($block);
+
+      // Add to any module
+      $block = \Drupal\block\Entity\Block::load('addtoanybuttons_2');
+      $variables['share'] = \Drupal::entityTypeManager()
+        ->getViewBuilder('block')
+        ->view($block);
+      
+    }
+    if ($variables['node']->getType() == 'portfolio')
+    {
+      // Add to any module
+      $block = \Drupal\block\Entity\Block::load('addtoanybuttons_2');
+      $variables['share'] = \Drupal::entityTypeManager()
+        ->getViewBuilder('block')
+        ->view($block);
+    }
+    
+}
+
+//Delta Value for Work Process Style 1
+function classic_pro_preprocess_paragraph__work_process_style_1(&$vars) {
+  $vars['delta'] = NULL;
+  foreach ($vars['paragraph']->getParentEntity()->field_work_process_style_1->getValue() as $delta => $item) {
+    if ($item['target_id'] === $vars['paragraph']->id()) {
+      $vars['delta'] = $delta;
+      break;
+    }
+  }
+}
+
+//Delta Value for Our Values Style 2
+function classic_pro_preprocess_paragraph__our_value_style_2(&$vars) {
+  $vars['delta'] = NULL;
+  foreach ($vars['paragraph']->getParentEntity()->field_our_value_style_2->getValue() as $delta => $item) {
+    if ($item['target_id'] === $vars['paragraph']->id()) {
+      $vars['delta'] = $delta;
+      break;
+    }
+  }
+}
+
+//Delta Value for History
+function classic_pro_preprocess_paragraph__history(&$vars) {
+  $vars['delta'] = NULL;
+  foreach ($vars['paragraph']->getParentEntity()->field_history->getValue() as $delta => $item) {
+    if ($item['target_id'] === $vars['paragraph']->id()) {
+      $vars['delta'] = $delta;
+      break;
+    }
+  }
+}
+
+function classic_pro_library_info_alter(&$libraries, $ext){
+  unset($libraries['form']);
+}
+
+
+/**
+ * Implements hook_preprocess_block().
+ */
+function classic_pro_preprocess_block(&$variables) {
+  // Check if the block has content.field_resume.
+  if (isset($variables['content']['field_resume']) && !empty($variables['content']['field_resume']['#items'])) {
+    $media = $variables['content']['field_resume']['#items'][0]->entity;
+    if ($media && $media->hasField('field_media_file')) {
+      $file = $media->field_media_file->entity;
+      if ($file) {
+        $file_url = \Drupal::service('file_url_generator')->generateAbsoluteString($file->getFileUri());
+        $variables['resume_url'] = $file_url;
+      }
+    }
+  }
+}

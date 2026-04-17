@@ -1,0 +1,21 @@
+<!-- Features -->
+<section class="our-features-1 section">
+        <div class="container">
+            <div class="home-1-title aos-init aos-animate" data-aos="fade-in" data-aos-duration="1000">
+                <h2>{{ content.field_title.0 }}</h2>
+            </div>
+            <div class="row gy-5">
+                <div class="col-lg-7  col-12">
+                    <div class="image aos-animate" data-aos="zoom-in-down" data-aos-duration="800">
+                        <img height="807" width="641" src="{{ file_url(content.field_image['#items'].entity.uri.value) }}" alt="{{content.field_image['#items'].alt}}" >
+                    </div>
+                </div>
+                <div class="col-lg-5 col-12">
+                    <div class="content">
+                        {{ content.field_feature_style_1 }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+

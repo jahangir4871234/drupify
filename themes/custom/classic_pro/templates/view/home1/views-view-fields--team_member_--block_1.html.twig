@@ -1,0 +1,23 @@
+<!-- Team Member -->
+
+
+<div class="col-lg-4 col-md-4 col-12">
+    <div class="item">
+        {% if fields.field_profile_link.content|striptags|trim %}
+        <a href="{{ fields.field_profile_link.content|striptags|trim }}">
+            <div class="overlay">
+                <p class="overlay-text">{{ 'Show Portfolio'|t }}</p>
+            </div>
+        </a>
+        {% endif %}
+          {{ fields.field_image.content }}
+           
+          
+
+        <div class="item-content">
+            <h3>{{ fields.field_name.content }}</h3>
+            <h4>{{ fields.field_designation.content }}</h4>
+            {{ fields.field_social_links.content }}
+        </div>
+    </div>
+</div>

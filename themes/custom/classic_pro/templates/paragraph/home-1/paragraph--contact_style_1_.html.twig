@@ -1,0 +1,70 @@
+<!-- Contact -->
+
+<section class="contact-1">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-12">
+                <div class="map">
+                    {{ content.field_map_link.0 }}
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-12">
+                <div class="contact">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="contact-contents">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-12 ">
+                <div class="details aos-init aos-animate" data-aos="fade-up" data-aos-duration="800">
+                        <ul>
+                            {% if content.field_address.0  %}
+                                <li>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="35" height="42.5" viewBox="0 0 35 42.5">
+                                        <g id="map-pin" transform="translate(-1.75 0.25)">
+                                            <path id="Path_27" data-name="Path 27" d="M35.5,17.364C35.5,30.091,19.25,41,19.25,41S3,30.091,3,17.364a16.25,16.25,0,1,1,32.5,0Z" transform="translate(0)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+                                            <circle id="Ellipse_17" data-name="Ellipse 17" cx="6.11" cy="6.11" r="6.11" transform="translate(12.981 11.175)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></circle>
+                                        </g>
+                                    </svg>
+                                    <a href="https://www.google.com/maps/" title="Address">{{ content.field_address.0 }}</a>
+                                </li>
+                            {% endif %}
+                            {% if content.field_contact_number.0  %}
+                                <li>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="52.582" height="52.582" viewBox="0 0 52.582 52.582">
+                                        <path id="phone" d="M42.54,32.269v6.086a4.062,4.062,0,0,1-4.431,4.058,40.28,40.28,0,0,1-17.543-6.228,39.6,39.6,0,0,1-12.2-12.173A40.1,40.1,0,0,1,2.128,6.423,4.061,4.061,0,0,1,6.174,2h6.1A4.063,4.063,0,0,1,16.338,5.49a26.007,26.007,0,0,0,1.423,5.7,4.052,4.052,0,0,1-.915,4.281l-2.582,2.577a32.493,32.493,0,0,0,12.2,12.173l2.582-2.577a4.071,4.071,0,0,1,4.289-.913,26.143,26.143,0,0,0,5.712,1.42A4.06,4.06,0,0,1,42.54,32.269Z" transform="matrix(0.966, 0.259, -0.259, 0.966, 10.475, -0.947)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+                                    </svg>
+                                    <a href="tel:{{ content.field_contact_number.0 }}" title="{{ content.field_contact_number.0 }}">{{ content.field_contact_number.0 }}</a>
+                                </li>
+                            {% endif %}
+                            {% if content.field_mail_address.0  %}
+                                <li>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="53.137" height="42.8" viewBox="0 0 53.137 42.8">
+                                        <g id="mail" transform="translate(-0.047 -2.6)">
+                                            <path id="Path_25" data-name="Path 25" d="M6.923,4H46.308a4.977,4.977,0,0,1,4.923,5V39a4.977,4.977,0,0,1-4.923,5H6.923A4.977,4.977,0,0,1,2,39V9A4.977,4.977,0,0,1,6.923,4Z" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.8"></path>
+                                            <path id="Path_26" data-name="Path 26" d="M51.231,6,26.615,23.5,2,6" transform="translate(0 3)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.8"></path>
+                                        </g>
+                                    </svg>
+                                    <a href="mailto:{{ content.field_mail_address.0 }}" title="{{ content.field_mail_address.0 }}">{{ content.field_mail_address.0 }}</a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-12">
+                <div class="home-1-title">
+                    <h2>{{ content.field_title.0 }}</h2>
+                </div>
+                <p>{{ content.field_description.0 }}</p>
+                <div class="form-style-2 aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000">
+                    <div class="item">
+                        {{ content.field_contact_form_style_1 }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>

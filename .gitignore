@@ -1,0 +1,30 @@
+# This .gitignore is based on example.gitignore and tailored for this Drupal
+# project. It prevents committing sensitive or user-generated files and large
+# dependency directories that you manage with Composer.
+
+# Ignore dependencies that are managed with Composer.
+vendor/
+
+# Ignore configuration files that may contain sensitive information.
+sites/*/settings*.php
+sites/*/services*.yml
+
+# Ignore paths that contain user-generated content.
+sites/*/files
+sites/*/private
+
+# Ignore multi-site test environment.
+sites/simpletest
+
+# Ignore local DevEnv and editor files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Ignore PHPStorm project files
+.phpstorm.meta.php
+
+# Ignore compiled assets if you're building them locally
+node_modules/
+dist/

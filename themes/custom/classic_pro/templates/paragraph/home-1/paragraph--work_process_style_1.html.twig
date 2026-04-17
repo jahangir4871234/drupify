@@ -1,0 +1,20 @@
+<!-- Work -->
+    {% if delta is even %}
+           <div class="col-lg-3 col-md-6 col-12 aos-init aos-animate" data-aos="fade-up" data-aos-anchor-placement="center-bottom">
+                 <div class="process-item bottom">
+                    <div class="icon">
+                        {{ content.field_icon.0 }}
+                    </div>
+                    <h5>{{ content.field_title.0 }}</h5>
+                </div> 
+            </div>
+        {% else %}
+            <div class="col-lg-3 col-md-6 col-12 aos-init aos-animate" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
+                <div class="process-item top">
+                    <h5>{{ content.field_title.0 }}</h5>
+                    <div class="icon">
+                        {{ content.field_icon.0 }}
+                    </div>
+                </div>
+            </div>
+    {% endif %}

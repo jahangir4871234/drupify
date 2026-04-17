@@ -1,0 +1,53 @@
+{# <div class="row">
+        {% for row in rows %}
+            {% if loop.index % 8 == 1 or loop.index % 8 == 0 %}
+              <div class="col-lg-6 col-sm-6 col-12 item 1 2">
+                  {{ row.content }}
+                  </div>
+            {% else %}
+              {% if loop.index == 2 or loop.index  == 5%}
+                <div class="col-lg-6 col-sm-6 col-12 item 3 4">
+                <div class="items-wrapper">
+                <div class="row">
+              {% endif %}
+                <div class="col-lg-6 col-md-6 col-6 ">
+                  {{ row.content }}
+                </div>
+                {% if loop.index == 4 or loop.index == 7 %}
+                    </div>
+                    </div>
+                    </div>
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+</div> #}
+    <div class="row">
+      {% for row in rows %}
+        {{ row.content }}
+      {% endfor %}
+    </div>
+{# <div class="style-2 owl-carousel owl-theme"> 
+        {% for row in rows %}
+          {% if loop.index % 4 == 1 %}
+            <div class="row">
+              {{ row.content }}
+          {% if loop.last %}  
+            </div>
+          {% endif %}
+          {% else %}
+              {{ row.content }}
+              {% if loop.last or loop.index % 4 == 0 %}
+              </div>
+              {% endif %}
+          {% endif %}
+        {% endfor %}
+    </div>
+<div class="row">
+        {% for row in rows %}
+            {% if loop.index % 4 == 1 %}
+              <div class="col-lg-6 col-md-12 col-12">
+                {{ row.content }}
+              </div>
+            {% else %}
+          {% endfor %}
+    </div> #}
