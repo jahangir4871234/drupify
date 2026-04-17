@@ -50,7 +50,7 @@
         "drupal/webform": "6.2.x-dev@dev",
         "drupal/xmlsitemap": "^1.5",
         "drupal/yoast_seo": "^2.0@alpha",
-        "drush/drush": "^11 || ^12",
+        "drush/drush": "^13.6",
         "wikimedia/composer-merge-plugin": "^2.0"
     },
     "conflict": {
