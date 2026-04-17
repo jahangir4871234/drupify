@@ -1,0 +1,14 @@
+.section-header h5{
+font-size: 24px;
+font-style: normal;
+font-weight: 500;
+line-height: 32px;
+color: var(--Text-color-2, #404040);
+}
+
+.services-title{
+font-size: 56px !important;
+font-style: normal;
+font-weight: 700;
+line-height: 64px;
+}

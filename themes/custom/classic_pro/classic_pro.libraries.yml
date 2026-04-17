@@ -12,6 +12,7 @@ global-styling:
       color/color-scheme.css: {}
       css/portfolio-page.css: {}
       css/custom.css: {}
+      css/service.css: {}
   dependencies:
     - core/jquery
     - core/drupal
