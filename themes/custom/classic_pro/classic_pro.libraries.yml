@@ -13,6 +13,7 @@ global-styling:
       css/portfolio-page.css: {}
       css/custom.css: {}
       css/service.css: {}
+      css/why-choose.css: {}
   dependencies:
     - core/jquery
     - core/drupal
