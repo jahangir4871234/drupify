@@ -65,11 +65,9 @@
           }
 
           getVisibleSlides() {
-
             if (window.innerWidth >= 1024) return 4;
             if (window.innerWidth >= 768) return 3;
             return 1;
-
           }
 
           init() {
@@ -78,24 +76,28 @@
             this.createDots();
             this.updateSlider(true);
 
-            setInterval(() => this.nextSlide(), 3000);
+            // ✅ Infinite loop handler
+            this.slider.addEventListener('transitionend', () => {
+              this.handleInfiniteLoop();
+            });
 
+            // ✅ Auto slide
+            this.autoSlide = setInterval(() => this.nextSlide(), 3000);
           }
 
           cloneSlides() {
 
             const slidesArray = Array.from(this.slides);
 
-            const cloneStart =
-              slidesArray.slice(0, this.visibleSlides);
+            const cloneStart = slidesArray.slice(0, this.visibleSlides);
+            const cloneEnd = slidesArray.slice(-this.visibleSlides);
 
-            const cloneEnd =
-              slidesArray.slice(-this.visibleSlides);
-
+            // Add clones at end
             cloneStart.forEach(slide => {
               this.slider.appendChild(slide.cloneNode(true));
             });
 
+            // Add clones at beginning
             cloneEnd.reverse().forEach(slide => {
               this.slider.insertBefore(
                 slide.cloneNode(true),
@@ -103,9 +105,9 @@
               );
             });
 
-            this.slides =
-              document.querySelectorAll('.team-slide');
+            this.slides = document.querySelectorAll('.team-slide');
 
+            // Start from real first slide
             this.currentSlide = this.visibleSlides;
           }
 
@@ -115,91 +117,92 @@
 
             this.dotsContainer.innerHTML = '';
 
-            this.totalPositions =
-              Math.ceil(
-                this.realSlidesCount / this.visibleSlides
-              );
+            this.totalPositions = Math.ceil(
+              this.realSlidesCount / this.visibleSlides
+            );
 
             for (let i = 0; i < this.totalPositions; i++) {
 
               const dot = document.createElement('span');
-
               dot.className = 'dot';
 
-              if (i === 0)
-                dot.classList.add('active');
+              if (i === 0) dot.classList.add('active');
 
               dot.addEventListener('click', () => {
 
-                this.currentSlide =
-                  i + this.visibleSlides;
-
+                this.currentSlide = i + this.visibleSlides;
                 this.updateSlider();
 
               });
 
               this.dotsContainer.appendChild(dot);
-
             }
 
-            this.dots =
-              this.dotsContainer.querySelectorAll('.dot');
-
+            this.dots = this.dotsContainer.querySelectorAll('.dot');
           }
 
           updateDots() {
 
             let index =
-              (this.currentSlide - this.visibleSlides)
-              % this.totalPositions;
+              (this.currentSlide - this.visibleSlides) % this.totalPositions;
 
-            if (index < 0)
-              index += this.totalPositions;
+            if (index < 0) index += this.totalPositions;
 
             this.dots.forEach((dot, i) => {
-
-              dot.classList.toggle(
-                'active',
-                i === index
-              );
-
+              dot.classList.toggle('active', i === index);
             });
-
           }
 
           nextSlide() {
-
-            if (this.isTransitioning) return;
-
             this.currentSlide++;
-
             this.updateSlider();
-
           }
 
           updateSlider(skipAnimation = false) {
 
-            const slideWidth =
-              100 / this.visibleSlides;
-
-            const translateX =
-              this.currentSlide * slideWidth;
+            const slideWidth = 100 / this.visibleSlides;
+            const translateX = this.currentSlide * slideWidth;
 
             this.slider.style.transition =
-              skipAnimation ? 'none' :
-              'transform 0.5s ease';
+              skipAnimation ? 'none' : 'transform 0.5s ease';
 
             this.slider.style.transform =
               `translateX(-${translateX}%)`;
 
             this.updateDots();
+          }
 
+          // ✅ MAIN FIX (infinite loop reset)
+          handleInfiniteLoop() {
+
+            const slideWidth = 100 / this.visibleSlides;
+
+            // End reached → jump to start
+            if (this.currentSlide >= this.realSlidesCount + this.visibleSlides) {
+
+              this.slider.style.transition = 'none';
+
+              this.currentSlide = this.visibleSlides;
+
+              const translateX = this.currentSlide * slideWidth;
+              this.slider.style.transform = `translateX(-${translateX}%)`;
+            }
+
+            // Start reached → jump to end
+            if (this.currentSlide < this.visibleSlides) {
+
+              this.slider.style.transition = 'none';
+
+              this.currentSlide = this.realSlidesCount;
+
+              const translateX = this.currentSlide * slideWidth;
+              this.slider.style.transform = `translateX(-${translateX}%)`;
+            }
           }
 
         }
 
         new TeamSlider();
-
       }
 
 
